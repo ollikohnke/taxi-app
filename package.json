@@ -1,0 +1,36 @@
+{
+  "name": "taxi-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch-front": "esbuild src_front/index.js --watch --bundle --outfile=dist_front/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"http://localhost:3000/api/status\\\"",
+    "watch-back": "esbuild src_back/index.js --watch --bundle --outfile=dist_back/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"http://localhost:3000/api/status\\\" --define:API_SERVER_URI_LOGIN=\\\"http://localhost:3000/auth/login\\\"",
+    "build-dev": "npm run watch-front && npm run watch-back",
+    "nodemon": "nodemon --env-file=.env.dev src_server/server.js",
+    "build-front": "esbuild src_front/index.js --minify --bundle --outfile=/mnt/vol-opako/podman/taxi-app/dist_front/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"https://taksi.opako.fi/api/status\\\"",
+    "build-back": "esbuild src_back/index.js --minify --bundle --outfile=/mnt/vol-opako/podman/taxi-app/dist_back/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"https://taksi.opako.fi/api/status\\\" --define:API_SERVER_URI_LOGIN=\\\"https://taksi.opako.fi/auth/login\\\"",
+    "build-prod": "npm run build-front && npm run build-back"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "esbuild": "^0.24.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-map-gl": "^7.1.7",
+    "react-router-dom": "^6.28.0",
+    "maplibre-gl": "^4.7.1"
+  }
+}
