@@ -71,8 +71,8 @@ networks:
 ```
 podman compose up -d
 ```
-[!TIP]
-Since you have mounted dist_back and dist_front to the container, it is possible to make updates with
-```
-npm run build-prod
-```
+> [!TIP]
+> Since you have mounted dist_back and dist_front to the container, it is possible to make updates with
+> ```
+> npm run build-prod
+> ```
