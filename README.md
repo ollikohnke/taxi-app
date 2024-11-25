@@ -1,15 +1,46 @@
 # taxi-app
 
-## Podman build
+Node.js Express Backend
+React Frontend
+JWT Auth
+Esbuild for bundling
+Podman for deployment
 
+## Logic
+Node express works as backend which purpose is to:
+
+  - Act as a HTTP server for frontends (customer and driver)
+  - Act as an API to save data to memory and respond to requests by clients (GET and POST)
+  - Implement JWT authentication and authorization for API calls
+
+React is used for frontends which purpose is to:
+
+For customer:
+    - See current status of the driver
+    - See current location of the driver
+
+For driver:
+    - Set the current status
+    - Choose if to share the location or no
+
+Esbuild is used to achieve:
+
+  - Lightning fast development for React with watch feature
+  - Minified production bundle
+
+## Deployment
+
+### Podman build & compose
+1. Create image with a tag
 ```
 podman build -t taxi-app .
 ```
-Copy files index.html and assets to podman/taxi-app/dist_back and dist_front
-
-
-## Podman compose
-
+2. Copy files index.html and assets to podman/taxi-app/dist_back and dist_front
+```
+cp -r ./dist_back /path/to/your/deployment/dist_back
+cp -r ./dist_front /path/to/your/deployment/dist_front
+```
+3. Create docker-compose.yaml file to /path/to/your/deployment/
 ```yaml
 services:
   taxi-app:
@@ -20,8 +51,8 @@ services:
     expose:
       - 3000
     volumes:
-      - /mnt/vol-opako/podman/taxi-app/dist_back:/home/node/app/dist_back
-      - /mnt/vol-opako/podman/taxi-app/dist_front:/home/node/app/dist_front
+      - /path/to/your/deployment/dist_back:/home/node/app/dist_back
+      - /path/to/your/deployment/dist_front:/home/node/app/dist_front
     restart: unless-stopped
     environment:
       - TZ=Europe/Helsinki
@@ -36,3 +67,12 @@ networks:
   internal:
     external: true
 ```
+4. Start the "stack" with configuration above
+```
+podman compose up -d
+```
+5. Since you have mounted dist_back and dist_front to the container, it is possible to make updates with
+```
+npm run build-prod
+```
+Which bundles the Bundle.js and Bundle.css straight to your server

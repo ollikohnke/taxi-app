@@ -4,9 +4,6 @@ const jwt = require('jsonwebtoken');
 const path = require('path')
 const router = express.Router();
 
-// To get root directory of root process (server.js)
-let dist = path.join(process.cwd(), "dist_auth")
-
 // Get credentials from environment
 let username = process.env.CREDENTIALS_USERNAME
 let pincode = process.env.CREDENTIALS_PINCODE
