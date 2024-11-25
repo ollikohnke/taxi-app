@@ -31,5 +31,5 @@ app.use('/api', apiRouter)
 //// Start the server ////
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(process.env.API_SERVER_URI);
+    console.log(process.env.SERVER_URI);
 });

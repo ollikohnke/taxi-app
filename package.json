@@ -6,10 +6,11 @@
     "watch-front": "esbuild src_front/index.js --watch --bundle --outfile=dist_front/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"http://localhost:3000/api/status\\\"",
     "watch-back": "esbuild src_back/index.js --watch --bundle --outfile=dist_back/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"http://localhost:3000/api/status\\\" --define:API_SERVER_URI_LOGIN=\\\"http://localhost:3000/auth/login\\\"",
     "build-dev": "npm run watch-front && npm run watch-back",
-    "nodemon": "nodemon --env-file=.env.dev src_server/server.js",
+    "nodemon-dev": "nodemon --env-file=.env.dev src_server/server.js",
     "build-front": "esbuild src_front/index.js --minify --bundle --outfile=/mnt/vol-opako/podman/taxi-app/dist_front/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"https://taksi.opako.fi/api/status\\\"",
     "build-back": "esbuild src_back/index.js --minify --bundle --outfile=/mnt/vol-opako/podman/taxi-app/dist_back/Bundle.js --loader:.js=jsx --format=cjs --define:API_SERVER_URI_STATUS=\\\"https://taksi.opako.fi/api/status\\\" --define:API_SERVER_URI_LOGIN=\\\"https://taksi.opako.fi/auth/login\\\"",
-    "build-prod": "npm run build-front && npm run build-back"
+    "build-prod": "npm run build-front && npm run build-back",
+    "nodemon-prod": "nodemon src_server/server.js"
   },
   "keywords": [],
   "author": "",

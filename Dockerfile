@@ -17,4 +17,4 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "nodemon" ]
+CMD [ "npm", "run", "nodemon-prod" ]
