@@ -1,5 +1,13 @@
 # taxi-app
 
+## Podman build
+
+```
+podman build -t taxi-app .
+```
+Copy files index.html and assets to podman/taxi-app/dist_back and dist_front
+
+
 ## Podman compose
 
 ```yaml
