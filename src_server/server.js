@@ -1,10 +1,3 @@
-/*
-//// Environment variables ////
-if (!process.env.PROD) {
-    const dotenv = require('dotenv')
-    dotenv.config({ path: `${__dirname}/../.env.dev` });
-}
-*/
 //// Load modules ////
 const express = require('express')
 const morgan = require('morgan');
