@@ -1,6 +1,8 @@
 # taxi-app
 
 ## Podman compose
+
+```yaml
 services:
   taxi-app:
     image: localhost/taxi-app
@@ -25,4 +27,4 @@ services:
 networks:
   internal:
     external: true
-
+```
