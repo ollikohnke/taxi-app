@@ -35,7 +35,7 @@ For driver:
 ```
 podman build -t taxi-app .
 ```
-2. Copy files index.html and assets to podman/taxi-app/dist_back and dist_front
+2. Copy files from (development folder) ./dist_back and ./dist_front to importantly include index.html and assets
 ```
 cp -r ./dist_back /path/to/your/deployment/dist_back
 cp -r ./dist_front /path/to/your/deployment/dist_front
@@ -62,7 +62,7 @@ services:
       - JWT_EXPIRES=1h
       - CREDENTIALS_USERNAME=secret
       - CREDENTIALS_PINCODE=secret
-      - API_SERVER_URI=whatever
+      - SERVER_URI=your_url
 networks:
   internal:
     external: true
@@ -71,8 +71,16 @@ networks:
 ```
 podman compose up -d
 ```
+
+
+
 > [!TIP]
-> Since you have mounted dist_back and dist_front to the container, it is possible to make updates with
+> Since you have mounted dist_back and dist_front to the container, it is possible to make further development with
 > ```
 > npm run build-prod
 > ```
+> which bundles the client files to your mounted volume configured in package.json
+
+> [!IMPORTANT]
+> The docker image does not contain required index.html or assets. This is why it is important to check these files.
+> Also, care is needed to sustain integrity of dist_back and dist_front when rebuilding image after file changes.
