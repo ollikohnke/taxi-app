@@ -11,7 +11,7 @@ import Prices from './components/Prices.js'
  
 function App() {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [longitude, setLongitude] = useState(null)
     const [latitude, setLatitude] = useState(null)
     const [onShift, setOnShift] = useState('')
@@ -39,6 +39,7 @@ function App() {
                     setMapMarker(responseData.mapmarker)
             }
             fetchData()
+            setLoading(false)
         }, 1000) // Change this in prod
 
         return () => {
@@ -47,6 +48,15 @@ function App() {
         
     }, [])
 
+    if (loading) {
+        return (
+            <div id="main">
+            <Welcome />
+            <div className="loader"></div>
+            <Prices />
+        </div>
+        )
+    }
     return (
         <div id="main">
             <Welcome />

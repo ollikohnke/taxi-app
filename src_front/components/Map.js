@@ -25,7 +25,7 @@ function Mapview({longitude, latitude, mapMarker}) {
     const [viewState, setViewState] = useState({
         longitude: 25.7269,
         latitude: 66.5030,
-        zoom: 6.41
+        zoom: 7.41
     });
 
     if (mapMarker != 'none') {
@@ -37,7 +37,7 @@ function Mapview({longitude, latitude, mapMarker}) {
                 {...settings}
                 onMove={evt => setViewState(evt.viewState)}
                 mapStyle = {MMLv21Mercator}
-                style={{width: "100%", height: "60dvh"}}
+                style={{width: "100%", height: "50svh"}}
                 >
                 <NavigationControl />
                 <Marker longitude={longitude} latitude={latitude} anchor="bottom" >
