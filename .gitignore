@@ -1,5 +1,0 @@
-.env.dev
-.thrash
-node_modules
-.gitignore
-Tours.js
