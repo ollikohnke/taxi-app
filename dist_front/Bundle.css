@@ -19,7 +19,7 @@ body::-webkit-scrollbar {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 8px solid #514b82;
+  border: 8px solid #448035;
   animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
 }
 @keyframes l20-1 {
@@ -86,7 +86,7 @@ body::-webkit-scrollbar {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  width: 60%;
+  width: 800px;
   height: 100%;
   display: flex;
   justify-content: center;

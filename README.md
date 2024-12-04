@@ -84,3 +84,34 @@ podman compose up -d
 > [!IMPORTANT]
 > The docker image does not contain required index.html or assets. This is why it is important to check these files.
 > Also, care is needed to sustain integrity of dist_back and dist_front when rebuilding image after file changes.
+
+## Development
+
+### Github branching
+
+Creating a new branch:
+```
+git branch new_branch
+```
+Seetting branch as current branch:
+```
+git checkout new_branch
+```
+
+### Bundling development to local folder
+```
+npm run watch-front
+npm run watch-back
+npm run nodemon-dev
+```
+
+### Push new branch to github
+```
+git add .
+git commit
+git push
+```
+
+### Create new podman image
+```
+podman build -t taxi-app:new_branch .

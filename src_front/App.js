@@ -14,9 +14,7 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [longitude, setLongitude] = useState(null)
     const [latitude, setLatitude] = useState(null)
-    const [onShift, setOnShift] = useState('')
-    const [isAvailable, setIsAvailable] = useState('')
-    const [availableIn, setAvailableIn] = useState('')
+    const [statusMessage, setStatusMessage] = useState('')
     const [mapMarker, setMapMarker] = useState('none')
 
     useEffect(() => {
@@ -31,9 +29,7 @@ function App() {
                     .catch(error => {
                         console.log(error)
                     })
-                    setOnShift(responseData.onshift)
-                    setIsAvailable(responseData.isavailable)
-                    setAvailableIn(responseData.availablein)
+                    setStatusMessage(responseData.statusmessage)
                     setLongitude(responseData.longitude)
                     setLatitude(responseData.latitude)
                     setMapMarker(responseData.mapmarker)
@@ -61,9 +57,7 @@ function App() {
         <div id="main">
             <Welcome />
             <OnShift
-                onShift={onShift}
-                isAvailable={isAvailable}
-                availableIn={availableIn}
+                statusMessage={statusMessage}
                 loading={loading}
             />
             <Mapview

@@ -30,8 +30,15 @@ body {
 .onebutton {
     margin:5px;
 }
+
 .button {
     min-width:100px;
     margin:0px;
     padding:10px;
+}
+
+.formbar {
+    margin-top:20px;
+    display:flex;
+    margin-left:5px;
 }

@@ -38,6 +38,12 @@ function Mapview({longitude, latitude, mapMarker}) {
                 onMove={evt => setViewState(evt.viewState)}
                 mapStyle = {MMLv21Mercator}
                 style={{width: "100%", height: "50svh"}}
+                onStyleLoad={map => {
+                    map.flyTo({
+                        center: [{longitude}, {latitude}],
+                        essential: true // this animation is considered essential with respect to prefers-reduced-motion
+                    });
+                }}
                 >
                 <NavigationControl />
                 <Marker longitude={longitude} latitude={latitude} anchor="bottom" >

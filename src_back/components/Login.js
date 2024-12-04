@@ -40,7 +40,7 @@ function LoginForm(){
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Username"
-                  inputmode="numeric"
+                  inputMode="numeric"
                   pattern="[0-9]*"
                   type="text"
                   autoFocus
@@ -50,7 +50,7 @@ function LoginForm(){
                   value={pincode}
                   onChange={(e) => setPincode(e.target.value)}
                   placeholder="PIN"
-                  inputmode="numeric"
+                  inputMode="numeric"
                   pattern="[0-9]*"
                 />
                 <button type="submit">Login</button>

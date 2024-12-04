@@ -43627,25 +43627,17 @@ var {
 // src_front/components/Welcome.js
 var import_react = __toESM(require_react());
 function Welcome() {
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: "welcome" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "Hello from ", /* @__PURE__ */ import_react.default.createElement("span", { style: { color: "yellow" } }, "TAXI")), /* @__PURE__ */ import_react.default.createElement("h2", null, "Whatsapp / call"), /* @__PURE__ */ import_react.default.createElement("a", { href: "tel:+358408611006" }, /* @__PURE__ */ import_react.default.createElement("h2", null, "+358 40 8611006")));
+  return /* @__PURE__ */ import_react.default.createElement("div", { className: "welcome" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "Hello from ", /* @__PURE__ */ import_react.default.createElement("span", { style: { color: "yellow" } }, "TAXI")), /* @__PURE__ */ import_react.default.createElement("small", null, "click to chat"), /* @__PURE__ */ import_react.default.createElement("a", { href: "https://wa.me/358408611006" }, /* @__PURE__ */ import_react.default.createElement("img", { style: { width: "70px", marginTop: "5px" }, src: "/assets/whatsapp.png" })), /* @__PURE__ */ import_react.default.createElement("small", { style: { marginTop: "20px" } }, "or call"), /* @__PURE__ */ import_react.default.createElement("a", { href: "tel:+358408611006" }, /* @__PURE__ */ import_react.default.createElement("h2", { style: { marginTop: "5px" } }, "+358 40 8611006")));
 }
 var Welcome_default = Welcome;
 
 // src_front/components/OnShift.js
 var import_react2 = __toESM(require_react());
-function OnShift({ onShift, isAvailable, availableIn, loading }) {
+function OnShift({ statusMessage, loading }) {
   if (loading) {
     return /* @__PURE__ */ import_react2.default.createElement("div", { className: "loader" });
   } else {
-    if (onShift && isAvailable) {
-      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "status" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Currently I am working and I am ", /* @__PURE__ */ import_react2.default.createElement("span", { style: { color: "green" } }, "AVAILABLE!")));
-    } else if (onShift && !isAvailable && availableIn !== null) {
-      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "status" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, " Currently I am working and will be ", /* @__PURE__ */ import_react2.default.createElement("span", { style: { color: "green" } }, "AVAILABLE!"), " in ", availableIn, " minutes!"));
-    } else if (onShift && !isAvailable && availableIn == null) {
-      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "status" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Currently I am on shift but unfortunately unavailable..."));
-    } else {
-      return /* @__PURE__ */ import_react2.default.createElement("div", { className: "status" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, "Currently I am not working"));
-    }
+    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "status" }, /* @__PURE__ */ import_react2.default.createElement("h1", null, statusMessage));
   }
 }
 var OnShift_default = OnShift;
@@ -46180,7 +46172,7 @@ function Mapview({ longitude, latitude, mapMarker }) {
   const [viewState, setViewState] = (0, import_react17.useState)({
     longitude: 25.7269,
     latitude: 66.503,
-    zoom: 6.41
+    zoom: 7.41
   });
   if (mapMarker != "none") {
     return /* @__PURE__ */ import_react17.default.createElement("div", { className: "map-container" }, /* @__PURE__ */ import_react17.default.createElement(
@@ -46190,7 +46182,14 @@ function Mapview({ longitude, latitude, mapMarker }) {
         ...settings,
         onMove: (evt) => setViewState(evt.viewState),
         mapStyle: MMLv21Mercator_default,
-        style: { width: "100%", height: "60dvh" }
+        style: { width: "100%", height: "50svh" },
+        onStyleLoad: (map) => {
+          map.flyTo({
+            center: [{ longitude }, { latitude }],
+            essential: true
+            // this animation is considered essential with respect to prefers-reduced-motion
+          });
+        }
       },
       /* @__PURE__ */ import_react17.default.createElement(NavigationControl2, null),
       /* @__PURE__ */ import_react17.default.createElement(Marker2, { longitude, latitude, anchor: "bottom" }, /* @__PURE__ */ import_react17.default.createElement("img", { style: { height: "50px" }, src: mapPath }))
@@ -46210,12 +46209,10 @@ var Prices_default = Prices;
 
 // src_front/App.js
 function App() {
-  const [loading, setLoading] = (0, import_react19.useState)(false);
+  const [loading, setLoading] = (0, import_react19.useState)(true);
   const [longitude, setLongitude] = (0, import_react19.useState)(null);
   const [latitude, setLatitude] = (0, import_react19.useState)(null);
-  const [onShift, setOnShift] = (0, import_react19.useState)("");
-  const [isAvailable, setIsAvailable] = (0, import_react19.useState)("");
-  const [availableIn, setAvailableIn] = (0, import_react19.useState)("");
+  const [statusMessage, setStatusMessage] = (0, import_react19.useState)("");
   const [mapMarker, setMapMarker] = (0, import_react19.useState)("none");
   (0, import_react19.useEffect)(() => {
     const intervalId = setInterval(() => {
@@ -46225,25 +46222,25 @@ function App() {
         }).catch((error) => {
           console.log(error);
         });
-        setOnShift(responseData.onshift);
-        setIsAvailable(responseData.isavailable);
-        setAvailableIn(responseData.availablein);
+        setStatusMessage(responseData.statusmessage);
         setLongitude(responseData.longitude);
         setLatitude(responseData.latitude);
         setMapMarker(responseData.mapmarker);
       };
       fetchData();
+      setLoading(false);
     }, 1e3);
     return () => {
       clearInterval(intervalId);
     };
   }, []);
+  if (loading) {
+    return /* @__PURE__ */ import_react19.default.createElement("div", { id: "main" }, /* @__PURE__ */ import_react19.default.createElement(Welcome_default, null), /* @__PURE__ */ import_react19.default.createElement("div", { className: "loader" }), /* @__PURE__ */ import_react19.default.createElement(Prices_default, null));
+  }
   return /* @__PURE__ */ import_react19.default.createElement("div", { id: "main" }, /* @__PURE__ */ import_react19.default.createElement(Welcome_default, null), /* @__PURE__ */ import_react19.default.createElement(
     OnShift_default,
     {
-      onShift,
-      isAvailable,
-      availableIn,
+      statusMessage,
       loading
     }
   ), /* @__PURE__ */ import_react19.default.createElement(

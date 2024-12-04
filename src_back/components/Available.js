@@ -1,31 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function Available({onShift, isAvailable, availableIn, handlePost}) {
+function Available({statusMessage, handlePost}) {
+
+    const [message, setMessage] = useState('')
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+      }
 
     return (
         <div>
             <div className="twobutton">
-                    <div className="onebutton">
-                        <button className="button" style={{backgroundColor: !onShift ? 'green' : 'gray'}} onClick={() => {handlePost({onshift: false})}} type="submit">Not working</button>
-                    </div>
-                    <div className="onebutton">
-                        <button className="button" style={{backgroundColor: onShift ? 'green' : 'gray'}} onClick={() => {handlePost({onshift: true})}} type="submit">Working</button>
-                    </div>
-                </div>
-            <div className="twobutton">
                 <div className="onebutton">
-                    <button className="button" style={{backgroundColor: !isAvailable ? 'green' : 'gray'}} onClick={() => {handlePost({isavailable: false})}} type="submit">Not available</button>
-                </div>
-                <div className="onebutton">
-                    <button className="button" style={{backgroundColor: isAvailable ? 'green' : 'gray'}} onClick={() => {handlePost({isavailable: true})}} type="submit">Available</button>
+                    <button className="button" style={{backgroundColor: (statusMessage == 'Currently I am not working') ? 'green' : 'gray'}} onClick={() => {handlePost({statusmessage: 'Currently I am not working'})}} type="submit">Not working</button>
                 </div>
             </div>
             <div className="twobutton">
                 <div className="onebutton">
-                    <button className="button" style={{backgroundColor: (availableIn===null) ? 'green' : 'gray'}} onClick={() => {handlePost({availablein: null})}} type="submit">null</button>
+                    <button className="button" style={{backgroundColor: (statusMessage == 'Currently I am working and I am AVAILABLE!') ? 'green' : 'gray'}} onClick={() => {handlePost({statusmessage: 'Currently I am working and I am AVAILABLE!'})}} type="submit">Available</button>
                 </div>
+            </div>
+            <div className="twobutton">
                 <div className="onebutton">
-                    <button className="button" style={{backgroundColor: availableIn ? 'green' : 'gray'}} onClick={() => {handlePost({availablein: 5})}} type="submit">5</button>
+                    <button className="button" style={{backgroundColor: (statusMessage == 'Right now I have a customer and will be available in a few moments') ? 'green' : 'gray'}} onClick={() => {handlePost({statusmessage: 'Right now I have a customer and will be available in a few moments'})}} type="submit">Short Trip</button>
+                </div>
+            </div>
+            <div className="twobutton">
+                <div className="onebutton">
+                    <button className="button" style={{backgroundColor: (statusMessage == 'Currently I am on a long trip and will be available later. Please contact') ? 'green' : 'gray'}} onClick={() => {handlePost({statusmessage: 'Currently I am on a long trip and will be available later. Please contact'})}} type="submit">Long trip</button>
+                </div>
+            </div>
+            <div className="formbar">
+                <form onSubmit={handleSubmit}>
+                        <input
+                            type="text" 
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                        <button type="submit" onClick={() => {handlePost({statusmessage: message})}}>Custom Status</button>
+                </form>
+            </div>
+            <div className="twobutton">
+                <div className="onebutton">
+                    <p style={{ color: 'white' }}>{statusMessage}</p>
                 </div>
             </div>
     </div>

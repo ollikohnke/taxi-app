@@ -7,9 +7,7 @@ const pinAuth = require('../middleware/pinAuth')
 
 // Global variables (stateful)
 var globalStatus = {
-  onshift: false,
-  isavailable: false,
-  availablein: null,
+  statusmessage: 'Currently I am not working',
   longitude: null,
   latitude: null,
   mapmarker: 'none'

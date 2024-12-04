@@ -12,9 +12,7 @@ function Driver() {
 
     const [count, setCount] = useState(0)
 
-    const [onShift, setOnShift] = useState('')
-    const [isAvailable, setIsAvailable] = useState('')
-    const [availableIn, setAvailableIn] = useState('')
+    const [statusMessage, setStatusMessage] = useState('')
     const [longitude, setLongitude] = useState('')
     const [latitude, setLatitude] = useState('')
     const [mapMarker, setMapMarker] = useState('none')
@@ -59,9 +57,7 @@ function Driver() {
                     console.log(error);
                     }
                 })
-            setOnShift(response.onshift)
-            setIsAvailable(response.isavailable)
-            setAvailableIn(response.availablein)
+            setStatusMessage(response.statusmessage)
             setLongitude(response.longitude)
             setLatitude(response.latitude)
             setMapMarker(response.mapmarker)
@@ -100,9 +96,7 @@ function Driver() {
     return (
         <div id="driver">
             <Available
-                onShift={onShift}
-                isAvailable={isAvailable}
-                availableIn={availableIn}
+                statusMessage={statusMessage}
                 handlePost={handlePost}
             />
             <Location

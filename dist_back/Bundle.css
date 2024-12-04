@@ -1,1 +1,38 @@
-body{background-color:#000}#main{max-width:80dvw;max-height:80dvh}#driver{width:95%;height:95%}.button{border:none;color:#fff;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px}.twobutton{display:flex;flex-direction:row}.onebutton{margin:5px}.button{min-width:100px;margin:0;padding:10px}
+/* src_back/App.css */
+body {
+  background-color: black;
+}
+#main {
+  max-width: 80dvw;
+  max-height: 80dvh;
+}
+#driver {
+  width: 95%;
+  height: 95%;
+}
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.twobutton {
+  display: flex;
+  flex-direction: row;
+}
+.onebutton {
+  margin: 5px;
+}
+.button {
+  min-width: 100px;
+  margin: 0px;
+  padding: 10px;
+}
+.formbar {
+  margin-top: 20px;
+  display: flex;
+  margin-left: 5px;
+}
