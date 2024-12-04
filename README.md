@@ -115,3 +115,15 @@ git push
 ### Create new podman image
 ```
 podman build -t taxi-app:new_branch .
+```
+
+### Create new build dist with production variables
+```
+npm run build-prod
+```
+
+### Change the YAML of the stack
+```yaml
+taxi-app:
+    image: localhost/taxi-app:status-message
+```
