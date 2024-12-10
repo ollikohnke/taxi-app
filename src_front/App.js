@@ -5,6 +5,8 @@ import Welcome from './components/Welcome.js'
 import OnShift from './components/OnShift.js'
 import Mapview from './components/Map.js'
 import Prices from './components/Prices.js'
+import Weather from './components/Weather.js'
+import Calendar from './components/Calendar.js'
 
 // Lift the state
 // Make api calls here and pass as props to children
@@ -66,6 +68,8 @@ function App() {
                 mapMarker={mapMarker}
             />
             <Prices />
+            <Weather />
+            <Calendar />
         </div>
     );
 }
