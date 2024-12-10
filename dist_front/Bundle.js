@@ -2386,9 +2386,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React12 = require_react();
+        var React14 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React14.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -3995,7 +3995,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React12.Children.forEach(props.children, function(child) {
+                React14.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -41103,13 +41103,13 @@ uniform ${i3} ${a3} u_${s3};
 });
 
 // src_front/index.js
-var import_react20 = __toESM(require_react());
+var import_react22 = __toESM(require_react());
 var import_client = __toESM(require_client());
-var import_react21 = __toESM(require_react());
+var import_react23 = __toESM(require_react());
 var import_react_dom3 = __toESM(require_react_dom());
 
 // src_front/App.js
-var import_react19 = __toESM(require_react());
+var import_react21 = __toESM(require_react());
 
 // node_modules/axios/lib/helpers/bind.js
 function bind(fn, thisArg) {
@@ -46207,14 +46207,50 @@ function Prices() {
 }
 var Prices_default = Prices;
 
+// src_front/components/Weather.js
+var import_react19 = __toESM(require_react());
+function Calendar() {
+  return /* @__PURE__ */ import_react19.default.createElement("div", { className: "weather", style: { width: "100%", maxWidth: "800px", margin: "0 auto" } }, /* @__PURE__ */ import_react19.default.createElement(
+    "iframe",
+    {
+      src: "https://saaasema.com/",
+      style: { borderWidth: 0, width: "100%", height: "800px" },
+      width: "800",
+      height: "600",
+      frameBorder: "0",
+      scrolling: "no",
+      title: "Weather"
+    }
+  ));
+}
+var Weather_default = Calendar;
+
+// src_front/components/Calendar.js
+var import_react20 = __toESM(require_react());
+function Calendar2() {
+  return /* @__PURE__ */ import_react20.default.createElement("div", { className: "calendar", style: { width: "100%", maxWidth: "800px", margin: "0 auto" } }, /* @__PURE__ */ import_react20.default.createElement(
+    "iframe",
+    {
+      src: "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FHelsinki&showPrint=0&showTz=0&showCalendars=0&hl=en&title=Mercedes-Benz%20Sprinter&src=OTE3N2UzYTQ4MWE2NDVkMmNmMmE4ZTk4NGQ1NGQzZWZmYTUyZWU0N2NlNmNiYTUwNDYxNDZiMjkxMjExZmY2NUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237CB342",
+      style: { borderWidth: 0, width: "100%", height: "600px" },
+      width: "800",
+      height: "600",
+      frameBorder: "0",
+      scrolling: "no",
+      title: "Mercedes-Benz Sprinter Calendar"
+    }
+  ));
+}
+var Calendar_default = Calendar2;
+
 // src_front/App.js
 function App() {
-  const [loading, setLoading] = (0, import_react19.useState)(true);
-  const [longitude, setLongitude] = (0, import_react19.useState)(null);
-  const [latitude, setLatitude] = (0, import_react19.useState)(null);
-  const [statusMessage, setStatusMessage] = (0, import_react19.useState)("");
-  const [mapMarker, setMapMarker] = (0, import_react19.useState)("none");
-  (0, import_react19.useEffect)(() => {
+  const [loading, setLoading] = (0, import_react21.useState)(true);
+  const [longitude, setLongitude] = (0, import_react21.useState)(null);
+  const [latitude, setLatitude] = (0, import_react21.useState)(null);
+  const [statusMessage, setStatusMessage] = (0, import_react21.useState)("");
+  const [mapMarker, setMapMarker] = (0, import_react21.useState)("none");
+  (0, import_react21.useEffect)(() => {
     const intervalId = setInterval(() => {
       const fetchData = async () => {
         const responseData = await axios_default.get("http://localhost:3000/api/status").then((response) => {
@@ -46235,22 +46271,22 @@ function App() {
     };
   }, []);
   if (loading) {
-    return /* @__PURE__ */ import_react19.default.createElement("div", { id: "main" }, /* @__PURE__ */ import_react19.default.createElement(Welcome_default, null), /* @__PURE__ */ import_react19.default.createElement("div", { className: "loader" }), /* @__PURE__ */ import_react19.default.createElement(Prices_default, null));
+    return /* @__PURE__ */ import_react21.default.createElement("div", { id: "main" }, /* @__PURE__ */ import_react21.default.createElement(Welcome_default, null), /* @__PURE__ */ import_react21.default.createElement("div", { className: "loader" }), /* @__PURE__ */ import_react21.default.createElement(Prices_default, null));
   }
-  return /* @__PURE__ */ import_react19.default.createElement("div", { id: "main" }, /* @__PURE__ */ import_react19.default.createElement(Welcome_default, null), /* @__PURE__ */ import_react19.default.createElement(
+  return /* @__PURE__ */ import_react21.default.createElement("div", { id: "main" }, /* @__PURE__ */ import_react21.default.createElement(Welcome_default, null), /* @__PURE__ */ import_react21.default.createElement(
     OnShift_default,
     {
       statusMessage,
       loading
     }
-  ), /* @__PURE__ */ import_react19.default.createElement(
+  ), /* @__PURE__ */ import_react21.default.createElement(
     Map_default,
     {
       longitude,
       latitude,
       mapMarker
     }
-  ), /* @__PURE__ */ import_react19.default.createElement(Prices_default, null));
+  ), /* @__PURE__ */ import_react21.default.createElement(Prices_default, null), /* @__PURE__ */ import_react21.default.createElement(Weather_default, null), /* @__PURE__ */ import_react21.default.createElement(Calendar_default, null));
 }
 var App_default = App;
 
@@ -46258,7 +46294,7 @@ var App_default = App;
 var rootElement = document.getElementById("root");
 var root = (0, import_client.createRoot)(rootElement);
 root.render(
-  /* @__PURE__ */ import_react21.default.createElement(App_default, null)
+  /* @__PURE__ */ import_react23.default.createElement(App_default, null)
 );
 /*! Bundled license information:
 
